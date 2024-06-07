@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+void selectionSort(vector<int>& v){
+
+    int n = v.size();
+
+    for(int i = 0; i < n -1; i++){
+
+        int minimum = i;
+
+        for(int j = i +1; j < n; j++){
+
+            if(v[j] < v[minimum]){
+
+                minimum = j;
+
+            }
+
+        }
+
+        if(minimum != i){
+
+            int temp = v[i];
+
+            v[i] = v[minimum];
+
+            v[minimum] = temp;
+
+        }
+
+    }
+
+}
+
+
+
+int main(){
+
+    vector<int> v(5);
+
+    v = {8, 4, 2, 5,2};
+
+    selectionSort(v);
+
+    for(auto& e: v) cout<< e;
+
+
+
+    return 0;
+
+}
