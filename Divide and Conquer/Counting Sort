@@ -1,0 +1,81 @@
+#include <iostream>
+
+#include <vector>
+
+
+
+using namespace std;
+
+
+
+void countingSort(vector<int>& Array, int m){
+
+    int n = Array.size();
+
+    vector<int> Count(m, 0);
+
+    vector<int> result(n);
+
+
+
+    for(int i = 0; i < n; i++){
+
+        Count[Array[i]] += 1;
+
+    }
+
+
+
+    for(int i = 1; i < m; i++){
+
+        Count[i] = Count[i] + Count[i-1];
+
+    }
+
+    for(auto e: Count) cout<<e<<" ";
+
+    cout<<endl;
+
+
+
+    for(int i = 0; i < n; i++){
+
+        result[--Count[Array[i]]] = Array[i];
+
+    }
+
+    for(auto e : result) cout<< e<<" ";
+
+    cout<< endl;
+
+
+
+    for(int i = 0; i < n; i++){
+
+        Array[i] = result[i];
+
+    }
+
+}
+
+
+
+int main(){
+
+    vector<int> Array(10);
+
+    Array = {6, 5, 4, 4, 1, 1, 1, 2, 3, 5};
+
+
+
+    countingSort(Array, 7);
+
+
+
+    for(auto e : Array) cout<< e<<" ";
+
+
+
+    return 0;
+
+}
