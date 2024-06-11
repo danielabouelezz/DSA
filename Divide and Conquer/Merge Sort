@@ -1,0 +1,143 @@
+#include <iostream>
+
+#include <vector>
+
+
+
+using namespace std;
+
+
+
+void mergeA(vector<int>& leftArray, vector<int>& rightArray, vector<int>& Array){
+
+    int leftSize = Array.size()/2;
+
+    int rightSize = Array.size() - leftSize;
+
+    int i = 0, l = 0, r = 0;
+
+
+
+    while(l < leftSize && r < rightSize){
+
+        if(leftArray[l] < rightArray[r]){
+
+            Array[i] = leftArray[l];
+
+            i++;
+
+            l++;
+
+        }
+
+        else{
+
+            Array[i] = rightArray[r];
+
+            i++;
+
+            r++;
+
+        }
+
+    }
+
+    while(l < leftSize){
+
+        Array[i] = leftArray[l];
+
+        i++;
+
+        l++;
+
+    }
+
+    while(r < rightSize){
+
+        Array[i] = rightArray[r];
+
+        i++;
+
+        r++;
+
+    }
+
+}
+
+void mergeSort(vector<int>& Array){
+
+    int length = Array.size();
+
+    int middle = length/2;
+
+
+
+    if(length <= 1) return ;
+
+
+
+    //vector<int>leftA(Array.begin(), Array.begin() + middle);
+
+    //vector<int> rightA(Array.begin() + middle, Array.end());
+
+
+
+    vector<int> leftArray(middle);
+
+    vector<int> rightArray(length-middle);
+
+
+
+    int i = 0, j = 0;
+
+
+
+    for(; i< length;i++){
+
+        if(i < middle){
+
+            leftArray[i] = Array[i];
+
+        }
+
+        else{
+
+            rightArray[j] = Array[i];
+
+            j++;
+
+        }
+
+    }
+
+
+
+    mergeSort(leftArray);
+
+    mergeSort(rightArray);
+
+    mergeA(leftArray, rightArray, Array);
+
+}
+
+
+
+
+
+int main(){
+
+    vector<int> Array = {8, 2, 5, 3, 4, 7, 6, 1};
+
+
+
+    mergeSort(Array);
+
+
+
+    for(auto e: Array) cout<< e<<" ";
+
+
+
+    return 0;
+
+}
