@@ -1,0 +1,89 @@
+#include <iostream>
+
+#include <vector>
+
+
+
+using namespace std;
+
+
+
+int Partition(vector<int>& Array, int start, int End){
+
+
+
+    int pivot = Array[End];
+
+    int i = start -1;
+
+
+
+    for(int j = start; j <= End -1; j++){
+
+        if(Array[j] < pivot){
+
+            i++;
+
+            int temp = Array[i];
+
+            Array[i] = Array[j];
+
+            Array[j] = temp;
+
+        }
+
+    }
+
+
+
+    i++;
+
+    int temp = Array[i];
+
+    Array[i] = Array[End];
+
+    Array[End] = temp;
+
+
+
+    return i;
+
+}
+
+
+
+void quickSort(vector<int>& Array, int start, int End){
+
+    if(End <= start) return;// base case.
+
+
+
+    int pivot = Partition(Array, start, End);
+
+    quickSort(Array, start, pivot-1);
+
+    quickSort(Array, pivot+1, End);
+
+
+
+}
+
+
+
+int main(){
+
+    vector<int> Array = {8, 2, 5, 3, 9, 4, 7, 6, 1};
+
+
+
+    quickSort(Array, 0, Array.size()-1);
+
+
+
+    for(auto e: Array) cout<< e<<" ";
+
+
+
+    return 0;
+
+}
