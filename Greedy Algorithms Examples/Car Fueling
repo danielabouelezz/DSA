@@ -1,0 +1,73 @@
+#include <iostream>
+
+
+
+using namespace std;
+
+
+
+int minRefills(int *x, int n, int L){
+
+    int currentPosition = 0, numRefill = 0;
+
+
+
+    while(currentPosition<= n){
+
+        int lastPostition = currentPosition;
+
+        //cout<<"the last position is equal to: "<<lastPostition<<endl;
+
+
+
+        while(currentPosition <= n && x[currentPosition+1] - x[lastPostition] <= L){
+
+            currentPosition++;
+
+            //cout<<"the current Position is equal to: "<<currentPosition<<endl;
+
+        }
+
+        if(currentPosition == lastPostition){
+
+            cout<< "Impossible\n";
+
+            return -1;
+
+        }
+
+        if(currentPosition <= n){
+
+            numRefill++;
+
+        }
+
+        //cout<< currentPosition<<"\n";
+
+    }
+
+    return numRefill;
+
+}
+
+
+
+int main(){
+
+    int arr[6] = {0, 1, 2, 3, 4, 5};
+
+    int n = 4;
+
+    int t = 2;
+
+
+
+    int result = minRefills(arr, n, t);
+
+    cout<< result<<endl;
+
+
+
+    return 0;
+
+}
