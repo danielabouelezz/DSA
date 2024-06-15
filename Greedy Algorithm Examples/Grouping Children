@@ -1,0 +1,77 @@
+#include <iostream>
+
+#include <vector>
+
+
+
+using namespace std;
+
+
+
+int groupingChildren(const vector<int>& children){
+
+    int groups = 0;
+
+    int firstPosition = 0;
+
+    int currentPosition = 1;
+
+    int lastChild = children.size();
+
+
+
+    while(currentPosition < lastChild){
+
+        if(children[currentPosition] - children[firstPosition] > 1){
+
+            groups++;
+
+            firstPosition = currentPosition;
+
+        }
+
+
+
+        if(currentPosition == lastChild -1){
+
+            groups++;
+
+        }
+
+        currentPosition++;
+
+    }
+
+    return groups;
+
+}
+
+
+
+int main(){
+
+    int n;
+
+    cin>>n;
+
+    vector<int> children(n);
+
+
+
+    for(int i = 0; i < n; i++){
+
+        cin>>children[i];
+
+    }
+
+
+
+    int result = groupingChildren(children);
+
+    cout<< result<<endl;
+
+
+
+    return 0;
+
+}
