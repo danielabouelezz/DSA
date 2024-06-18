@@ -1,0 +1,113 @@
+#include <iostream>
+
+
+
+using namespace std;
+
+
+
+class Node{
+
+public:
+
+    int Value;
+
+    Node* Next;
+
+    Node* Previous;
+
+};
+
+
+
+void printForward(Node* head){
+
+    Node* traverser = head;
+
+    while(traverser != nullptr){
+
+        cout<< traverser->Value<<endl;
+
+        traverser = traverser->Next;
+
+    }
+
+}
+
+
+
+void printBackward(Node* tail){
+
+    Node* traverser = tail;
+
+    while(traverser != nullptr){
+
+        cout<< traverser->Value<<endl;
+
+        traverser = traverser->Previous;
+
+    }
+
+}
+
+
+
+int main(){
+
+    Node* head;
+
+    Node* tail;
+
+
+
+    Node* node = new Node();
+
+    node->Value = 4;
+
+    node->Next = nullptr;
+
+    node->Previous = nullptr;
+
+
+
+    head = node;
+
+    tail = node;
+
+    // add 2nd node
+
+    node = new Node();
+
+    node->Value = 5;
+
+    node->Next = nullptr;
+
+    node->Previous = tail;
+
+    tail->Next = node;
+
+    tail = node;
+
+    // add 3rd node
+
+    node = new Node();
+
+    node->Value = 6;
+
+    node->Next = nullptr;
+
+    node->Previous = tail;
+
+    tail->Next = node;
+
+    tail = node;
+
+
+
+    printForward(head);
+
+    printBackward(tail);
+
+    return 0;
+
+}
