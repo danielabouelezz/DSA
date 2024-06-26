@@ -1,0 +1,117 @@
+#include <iostream>
+
+using namespace std;
+
+
+
+class Queue{
+
+public:
+
+    int Front;
+
+    int Rear;
+
+    int arr[5];
+
+
+
+public:
+
+    Queue(){
+
+        Front = -1;
+
+        Rear = -1;
+
+        for(int i = 0; i < 5; i++){
+
+            arr[i] = 0;
+
+        }
+
+    }
+
+
+
+    bool isEmpty(){
+
+        if(Front == -1 && Rear == -1) return true;
+
+        else return false;
+
+        }
+
+    bool isFull(){
+
+        if(Rear == 4) return true;
+
+        else return false;
+
+    }
+
+    void enqueue(int value){
+
+        if(isFull()) return;
+
+        else if(isEmpty()){
+
+            Front = 0;
+
+            Rear = 0;
+
+            arr[Rear] = value;
+
+        }
+
+        else Rear++;
+
+        arr[Rear] = value;
+
+    }
+
+    int dequeue(){
+
+        int x;
+
+        if(isEmpty()) return 0;
+
+        else if(Front == Rear){
+
+            x = arr[Front];
+
+            arr[Front] = 0;
+
+            Front = -1;
+
+            Rear = -1;
+
+
+
+            cout<<x<<endl;
+
+            return x;
+
+        }
+
+        x = arr[Front];
+
+        arr[Front] = 0;
+
+        Front++;
+
+        cout<<x<<endl;
+
+        return x;
+
+    }
+
+    int Count(){
+
+        return (Rear -Front+1);
+
+    }
+
+
+
+};
