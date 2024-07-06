@@ -1,0 +1,75 @@
+#include <iostream>
+
+
+
+using namespace std;
+
+
+
+class Node{
+
+public:
+
+    int Value;
+
+    Node* Next;
+
+}*top = NULL;
+
+
+
+void printStack(Node* head){
+
+    while(head != NULL){
+
+        cout<<head->Value<<endl;
+
+        head = head->Next;
+
+    }
+
+}
+
+
+
+void addAtTheFront(Node** head, int newValue){
+
+    Node* node = new Node();
+
+    node->Value = newValue;
+
+
+
+    node->Next = *head;
+
+    *head = node;
+
+    top = node;
+
+}
+
+
+
+int main(){
+
+    Node* head = new Node();
+
+
+
+    head->Value = 1;
+
+    head->Next = NULL;
+
+    top = head;
+
+
+
+    addAtTheFront(&head, 2);
+
+    printStack(head);
+
+
+
+    return 0;
+
+}
